@@ -68,6 +68,24 @@ kable(
   caption = "Summary of Mean New Cases and Total New Deaths by Year"
 )
 
+# Create a new column for the year-month (formatted as "YYYY-MM")
+data$year_month <- format(data$date, "%Y-%m")
+
+# Summarize the data by the 'year_month' column
+summary_table <- data %>%
+  group_by(year_month) %>%
+  summarise(
+    Mean_New_Cases = mean(new_cases, na.rm = TRUE),
+    Total_New_Deaths = sum(new_deaths, na.rm = TRUE)
+  ) %>%
+  head(10)  # Display only the first 10 rows
+
+# Display the summary table with a caption
+kable(
+  summary_table,
+  caption = "Summary of Mean New Cases and Total New Deaths by Month of Each Year"
+)
+
 ```
 
 # Visualisations
@@ -81,6 +99,16 @@ ggplot(data, aes(x = date, y = new_cases)) +
     y = "New Cases",
     caption = "Figure: New COVID-19 cases shown by date"
   )
+
+ggplot(data, aes(x = date, y = new_deaths)) +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(
+    title = "Scatter Plot of New COVID-19 Deaths Over Time",
+    x = "Date",
+    y = "New Deaths",
+    caption = "Figure: New COVID-19 Deaths shown by date"
+  )
+
 ```
 # Conclusion
 
