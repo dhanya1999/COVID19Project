@@ -34,6 +34,7 @@ data <- read.csv("Data/Australia_Data_till_End_of_2022.csv")
 variable_names <- data.frame(Variable_Names = colnames(data))
 kable(variable_names, col.names = "Variable Names")
 ```
+
 # Data set description
 
 The dataset has `r nrow(data)` observations and `r ncol(data)` variables.
@@ -72,6 +73,7 @@ kable(
 
 )
 ```
+
 ## Summary by Year-Month:
 
 This table provides a detailed look at the monthly mean of new cases and the total number of new deaths for each month, starting from January 2020.
@@ -98,6 +100,7 @@ kable(
 
 ```
 Both tables help track the progression of COVID-19's impact over time, reflecting changes in cases and deaths by year and by month.
+
 # Visualisations
 
 
@@ -113,7 +116,9 @@ ggplot(data, aes(x = date, y = new_cases)) +
   ) +
   theme_minimal()
 ```
-# Scatter plot with trend line for new deaths
+
+## Scatter plot with trend line for new deaths
+
 ```{r}
 ggplot(data, aes(x = date, y = new_deaths)) +
   geom_point(color = "pink", alpha = 0.3) +
@@ -125,7 +130,9 @@ ggplot(data, aes(x = date, y = new_deaths)) +
   ) +
   theme_minimal()
 ```
+
 ### Analysis:
+
 The scatter plots effectively visualize trends in daily new COVID-19 cases and deaths in Australia over time. The plot for new cases shows peaks corresponding to infection waves, while the deaths plot highlights periods of increased fatalities, often following case surges. This helps infer a potential time-lagged relationship between infections and fatalities.
 
 I have plotted the trend lines for both new COVID-19 cases and new deaths over time. The red line in each scatter plot represents the trend, showing the overall direction and rate of change over the observed period. These trend lines help highlight any consistent increases or decreases in cases and deaths, making it easier to analyze long-term patterns.
