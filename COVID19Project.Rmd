@@ -46,10 +46,13 @@ str(head(data, 2))
 
 # Data Summary
 
+## Summary by year
+
+This table shows the mean number of new cases and the total number of new deaths for each year from 2020 to 2022.
+
 ```{r}
 # Convert the 'date' column to Date type
 data$date <- as.Date(data$date, format = "%d/%m/%Y")  # Adjust the format if necessary
-
 # Create a new column for the year
 data$year <- year(data$date)
 
@@ -66,7 +69,14 @@ summary_table <- data %>%
 kable(
   summary_table,
   caption = "Summary of Mean New Cases and Total New Deaths by Year"
+
 )
+```
+## Summary by Year-Month:
+
+This table provides a detailed look at the monthly mean of new cases and the total number of new deaths for each month, starting from January 2020.
+
+```{r}
 
 # Create a new column for the year-month (formatted as "YYYY-MM")
 data$year_month <- format(data$date, "%Y-%m")
