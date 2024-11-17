@@ -81,6 +81,14 @@ ggplot(data, aes(x = date, y = new_cases)) +
     y = "New Cases",
     caption = "Figure: New COVID-19 cases shown by date"
   )
+ggplot(data, aes(x = date, y = new_deaths)) +
+  geom_point(color = "green", alpha = 0.6) +
+  labs(
+    title = "Scatter Plot of New COVID-19 Deaths Over Time",
+    x = "Date",
+    y = "New Deaths",
+    caption = "Figure: New COVID-19 Deaths shown by date"
+  )
 ```
 # Conclusion
 
