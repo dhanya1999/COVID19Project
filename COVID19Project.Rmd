@@ -97,28 +97,39 @@ kable(
 )
 
 ```
-
+Both tables help track the progression of COVID-19's impact over time, reflecting changes in cases and deaths by year and by month.
 # Visualisations
-```{r}
-# Create a scatter plot using ggplot2
-ggplot(data, aes(x = date, y = new_cases)) +
-  geom_point(color = "blue", alpha = 0.6) +
-  labs(
-    title = "Scatter Plot of New COVID-19 Cases Over Time",
-    x = "Date",
-    y = "New Cases",
-    caption = "Figure: New COVID-19 cases shown by date"
-  )
 
-ggplot(data, aes(x = date, y = new_deaths)) +
-  geom_point(color = "green", alpha = 0.6) +
+
+## Scatter plot with trend line for new cases
+```{r}
+ggplot(data, aes(x = date, y = new_cases)) +
+  geom_point(color = "blue", alpha = 0.3) +
+  geom_smooth(method = "lm", color = "red") +
   labs(
-    title = "Scatter Plot of New COVID-19 Deaths Over Time",
+    title = "Trend Line of New COVID-19 Cases Over Time",
     x = "Date",
-    y = "New Deaths",
-    caption = "Figure: New COVID-19 Deaths shown by date"
-  )
+    y = "New Cases"
+  ) +
+  theme_minimal()
 ```
+# Scatter plot with trend line for new deaths
+```{r}
+ggplot(data, aes(x = date, y = new_deaths)) +
+  geom_point(color = "green", alpha = 0.3) +
+  geom_smooth(method = "lm", color = "red") +
+  labs(
+    title = "Trend Line of New COVID-19 Deaths Over Time",
+    x = "Date",
+    y = "New Deaths"
+  ) +
+  theme_minimal()
+```
+### Analysis:
+The scatter plots effectively visualize trends in daily new COVID-19 cases and deaths in Australia over time. The plot for new cases shows peaks corresponding to infection waves, while the deaths plot highlights periods of increased fatalities, often following case surges. This helps infer a potential time-lagged relationship between infections and fatalities.
+
+I have plotted the trend lines for both new COVID-19 cases and new deaths over time. The red line in each scatter plot represents the trend, showing the overall direction and rate of change over the observed period. These trend lines help highlight any consistent increases or decreases in cases and deaths, making it easier to analyze long-term patterns.
+
 # Conclusion
 
 Based on the analysis of the COVID-19 data for Australia, we can conclude that there are distinct trends and patterns in the number of new cases and deaths over time. The analysis showed that 2022 experienced significantly higher averages in new cases, often corresponding with higher totals in deaths, suggesting waves of heightened transmission and impact. This pattern highlights the strong relationship between case surges and mortality rates, aligning with known periods of the pandemic. The visualizations, such as scatter plots, reinforced these observations by showing clear peaks and clusters over time. These findings are crucial for understanding how COVID-19 evolved and for developing targeted public health strategies to manage future outbreaks. Monitoring case and death trends helps inform public health interventions to reduce severe outcomes during critical periods.
