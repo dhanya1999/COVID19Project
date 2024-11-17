@@ -116,7 +116,7 @@ ggplot(data, aes(x = date, y = new_cases)) +
 # Scatter plot with trend line for new deaths
 ```{r}
 ggplot(data, aes(x = date, y = new_deaths)) +
-  geom_point(color = "green", alpha = 0.3) +
+  geom_point(color = "pink", alpha = 0.3) +
   geom_smooth(method = "lm", color = "red") +
   labs(
     title = "Trend Line of New COVID-19 Deaths Over Time",
@@ -132,7 +132,7 @@ I have plotted the trend lines for both new COVID-19 cases and new deaths over t
 
 # Conclusion
 
-Based on the analysis of the COVID-19 data for Australia, we can conclude that there are distinct trends and patterns in the number of new cases and deaths over time. The analysis showed that 2022 experienced significantly higher averages in new cases, often corresponding with higher totals in deaths, suggesting waves of heightened transmission and impact. This pattern highlights the strong relationship between case surges and mortality rates, aligning with known periods of the pandemic. The visualizations, such as scatter plots, reinforced these observations by showing clear peaks and clusters over time. These findings are crucial for understanding how COVID-19 evolved and for developing targeted public health strategies to manage future outbreaks. Monitoring case and death trends helps inform public health interventions to reduce severe outcomes during critical periods.
+The analysis of COVID-19 data for Australia highlights distinct trends, especially in 2022, which saw significantly higher averages in new cases and related deaths. This surge was primarily driven by highly transmissible variants like Omicron, easing of public health restrictions, waning vaccine immunity, and increased social interactions. Visualizations, such as scatter plots, confirmed these patterns, showing clear peaks over time that aligned with known waves of heightened transmission. These findings underscore the importance of monitoring variant behavior, maintaining vaccination efficacy through boosters, and understanding public behavior shifts. Insights from this analysis are crucial for crafting targeted public health strategies to manage future outbreaks and minimize severe outcomes.
 
 # References
 
