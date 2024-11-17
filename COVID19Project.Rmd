@@ -1,0 +1,92 @@
+---
+title: "COVID19 Mini-Project"
+output: html_document
+---
+
+```{r, echo=FALSE, warning=FALSE, message=FALSE}
+# Load necessary libraries
+library(dplyr)
+library(ggplot2)
+library(knitr)
+library(lubridate)  # For extracting the year from the date
+```
+
+# Research Questions
+
+I would like to investigate the trends in daily new COVID-19 cases and their relationship with daily new deaths over time in Australia.
+
+# Data set introduction
+
+This dataset contains COVID-19 daily statistics for Australia up to the end of 2022. It records daily and cumulative counts of new cases and deaths.
+
+The dataset includes:
+
+date: Date of the data entry. <br>
+new_cases and new_deaths: Counts of new COVID-19 cases and deaths reported daily.<br>
+total_cases and total_deaths: Total cumulative counts of cases and deaths up to the given date.<br>
+
+```{r}
+# Load the data
+data <- read.csv("Data/Australia_Data_till_End_of_2022.csv")
+
+
+# Create a table of variable names
+variable_names <- data.frame(Variable_Names = colnames(data))
+kable(variable_names, col.names = "Variable Names")
+```
+# Data set description
+
+The dataset has `r nrow(data)` observations and `r ncol(data)` variables.
+
+```{r include-image, echo=FALSE}
+knitr::include_graphics("Image/data_description.png")
+
+str(head(data, 2))
+```
+
+# Data Summary
+
+```{r}
+# Convert the 'date' column to Date type
+data$date <- as.Date(data$date, format = "%d/%m/%Y")  # Adjust the format if necessary
+
+# Create a new column for the year
+data$year <- year(data$date)
+
+# Summarize the data by the 'year' column
+summary_table <- data %>%
+  group_by(year) %>%
+  summarise(
+    Mean_New_Cases = mean(new_cases, na.rm = TRUE),
+    Total_New_Deaths = sum(new_deaths, na.rm = TRUE)
+  ) %>%
+  head(10)  # Display only the first 10 rows
+
+# Display the summary table with a caption
+kable(
+  summary_table,
+  caption = "Summary of Mean New Cases and Total New Deaths by Year"
+)
+
+```
+
+# Visualisations
+```{r}
+# Create a scatter plot using ggplot2
+ggplot(data, aes(x = date, y = new_cases)) +
+  geom_point(color = "blue", alpha = 0.6) +
+  labs(
+    title = "Scatter Plot of New COVID-19 Cases Over Time",
+    x = "Date",
+    y = "New Cases",
+    caption = "Figure: New COVID-19 cases shown by date"
+  )
+```
+# Conclusion
+
+Based on the analysis of the COVID-19 data for Australia, we can conclude that there are distinct trends and patterns in the number of new cases and deaths over time. The analysis showed that 2022 experienced significantly higher averages in new cases, often corresponding with higher totals in deaths, suggesting waves of heightened transmission and impact. This pattern highlights the strong relationship between case surges and mortality rates, aligning with known periods of the pandemic. The visualizations, such as scatter plots, reinforced these observations by showing clear peaks and clusters over time. These findings are crucial for understanding how COVID-19 evolved and for developing targeted public health strategies to manage future outbreaks. Monitoring case and death trends helps inform public health interventions to reduce severe outcomes during critical periods.
+
+# References
+
+https://github.com/owid/covid-19-data/tree/master/public/data/vaccinations
+https://ourworldindata.org/coronavirus
