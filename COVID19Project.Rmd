@@ -108,7 +108,6 @@ ggplot(data, aes(x = date, y = new_deaths)) +
     y = "New Deaths",
     caption = "Figure: New COVID-19 Deaths shown by date"
   )
-
 ```
 # Conclusion
 
